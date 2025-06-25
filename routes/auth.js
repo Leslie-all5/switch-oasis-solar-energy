@@ -1,3 +1,8 @@
+const express = require('express');
+const router = express.Router(); // 🛠 THIS LINE IS MISSING IN YOUR CODE
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const User = require('../models/User');
 // LOGIN ROUTE
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
