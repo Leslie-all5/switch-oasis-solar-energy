@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - Switch Oasis</title>
+  <link rel="stylesheet" href="css/login.css" />
+<script defer src="js/auth.js"></script>
+</head>
+<body>
+  <div class="container form-section">
+    <h2>Login to Your Account</h2>
+    <form id="loginForm">
+      <label>Email</label>
+      <input type="email" name="email" required />
+
+      <label>Password</label>
+      <input type="password" name="password" required />
+
+      <button type="submit" class="btn-primary">Login</button>
+    </form>
+    <p>Don't have an account? <a href="sign-in.html">Sign up</a></p>
+  </div>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const res = await fetch('https://your-backend-url.com/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: form.email.value,
+          password: form.password.value
+        })
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        localStorage.setItem('authToken', data.token);
+        alert('Login successful!');
+        window.location.href = 'dashboard.html'; // Create this page if needed
+      } else {
+        alert(data.error || 'Login failed.');
+      }
+    });
+  </script>
+</body>
+</html>
