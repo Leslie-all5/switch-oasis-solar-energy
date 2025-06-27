@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <h1>Welcome to the Dashboard</h1>
+    <p>This is a protected page only visible to logged-in users.</p>
+    <button id="logoutBtn">Logout</button>
+
+    <script>
+      // Check if token exists
+      const token = localStorage.getItem("token");
+      if (!token) {
+        alert("Unauthorized access. Please log in.");
+        window.location.href = "login.html";
+      }
+
+      // Logout
+      document.getElementById("logoutBtn").addEventListener("click", () => {
+        localStorage.removeItem("token");
+        window.location.href = "login.html";
+      });
+    </script>
+  </body>
+</html>
