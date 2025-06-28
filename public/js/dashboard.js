@@ -1,3 +1,5 @@
+const BASE_URL = 'https://switch-oasis-backend.onrender.com';
+
 document.addEventListener('DOMContentLoaded', async () => {
   const token = localStorage.getItem('token');
   if (!token) {
@@ -8,7 +10,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   try {
     // Fetch user data
-    const res = await fetch('/api/auth/me', {
+    const res = await fetch(`${BASE_URL}/api/auth/me`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
