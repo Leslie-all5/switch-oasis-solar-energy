@@ -3,27 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="css/styles.css" />
+    <title>Dashboard - Switch Oasis</title>
+    <link rel="stylesheet" href="css/dashboard.css" />
   </head>
   <body>
-    <h1>Welcome to the Dashboard</h1>
-    <p>This is a protected page only visible to logged-in users.</p>
-    <button id="logoutBtn">Logout</button>
+    <header class="header">
+      <h1>Welcome to your Dashboard</h1>
+      <div class="header-buttons">
+        <button id="updateProfileBtn">Update Profile</button>
+        <button id="logoutBtn" class="logout-btn">Logout</button>
+      </div>
+    </header>
 
-    <script>
-      // Check if token exists
-      const token = localStorage.getItem("token");
-      if (!token) {
-        alert("Unauthorized access. Please log in.");
-        window.location.href = "login.html";
-      }
+    <main class="dashboard-content">
+      <section class="card" id="userInfo">
+        <h2>User Information</h2>
+        <p><strong>Username:</strong> <span id="username">Loading...</span></p>
+        <p><strong>Email:</strong> <span id="email">Loading...</span></p>
+      </section>
 
-      // Logout
-      document.getElementById("logoutBtn").addEventListener("click", () => {
-        localStorage.removeItem("token");
-        window.location.href = "login.html";
-      });
-    </script>
+      <section class="card" id="messages">
+        <h2>Contact Form Messages</h2>
+        <ul id="messagesList" class="messages-list">
+          <li>Loading messages...</li>
+        </ul>
+      </section>
+    </main>
+
+    <script src="js/dashboard.js"></script>
   </body>
 </html>

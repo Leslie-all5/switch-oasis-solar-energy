@@ -1,0 +1,65 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  background: #f4f6f8;
+  color: #333;
+}
+
+.header {
+  background: #004d40;
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-buttons button {
+  margin-left: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #009688;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.header-buttons button:hover {
+  background: #00796b;
+}
+
+.header-buttons button.logout-btn {
+  background: #e53935;
+}
+
+.header-buttons button.logout-btn:hover {
+  background: #c62828;
+}
+
+.dashboard-content {
+  max-width: 1000px;
+  margin: 2rem auto;
+  display: grid;
+  gap: 2rem;
+}
+
+.card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.messages-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.messages-list li {
+  background: #e0f2f1;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+}
