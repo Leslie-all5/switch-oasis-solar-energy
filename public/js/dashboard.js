@@ -1,3 +1,5 @@
+// js/dashboard.js
+
 const BASE_URL = 'https://switch-oasis-backend.onrender.com';
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -9,8 +11,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   try {
-    // Fetch user data
-    const res = await fetch(`${BASE_URL}/api/auth/me`, {
+    // Fetch user data securely
+    const res = await fetch(`${BASE_URL}/api/auth/user`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }

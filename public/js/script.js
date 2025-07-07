@@ -12,25 +12,39 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
+// Nav toggle for mobile
+const navToggle = document.getElementById('nav-toggle');
+const nav = document.querySelector('#main-nav ul');
+if (navToggle && nav) {
+  navToggle.addEventListener('click', () => {
+    nav.classList.toggle('show');
+  });
+}
+
 // Form submission – safe check
 const form = document.querySelector('form');
 if (form) {
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    cosole.log("Contact form script loaded");
+    console.log("Contact form script loaded"); 
 
     const name = form.querySelector('input[name="name"]').value;
     const email = form.querySelector('input[name="email"]').value;
     const message = form.querySelector('textarea[name="message"]').value;
 
-    fetch("https://switch-oasis-backend.onrender.com/contact", {
+    fetch("https://switch-oasis-backend.onrender.com/api/contact", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({ name, email, message })
     })
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return res.json();
+      })
       .then(data => {
         console.log("Success:", data);
         alert("Message sent successfully!");

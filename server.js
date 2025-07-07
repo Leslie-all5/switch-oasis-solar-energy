@@ -5,7 +5,7 @@ require('dotenv').config();
 
 const app = express();
 
-// ✅ Serve static files from the "public" folder
+//  Serve static files from the "public" folder
 app.use(express.static('public'));
 
 app.use(cors());
