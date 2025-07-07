@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Contact = require('../models/Contact'); // get model here
+const Contact = require('../models/contact'); // get model here
 const authMiddleware = require('../middleware/auth'); // protect GET route
 
 // POST contact form message (public, no auth)
