@@ -1,18 +1,17 @@
-console.log("auth.js or script.js is running")
-// Smooth scrolling for navigation links
+console.log("script.js is running");
+
+//  Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
     e.preventDefault();
     const target = document.querySelector(this.getAttribute('href'));
     if (target) {
-      target.scrollIntoView({
-        behavior: 'smooth'
-      });
+      target.scrollIntoView({ behavior: 'smooth' });
     }
   });
 });
 
-// Nav toggle for mobile
+// 🌿 Nav toggle for mobile
 const navToggle = document.getElementById('nav-toggle');
 const nav = document.querySelector('#main-nav ul');
 if (navToggle && nav) {
@@ -21,12 +20,12 @@ if (navToggle && nav) {
   });
 }
 
-// Form submission – safe check
+// ✉ Contact form submission
 const form = document.querySelector('form');
 if (form) {
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    console.log("Contact form script loaded"); 
+    console.log("Contact form script loaded");
 
     const name = form.querySelector('input[name="name"]').value;
     const email = form.querySelector('input[name="email"]').value;
@@ -34,15 +33,11 @@ if (form) {
 
     fetch("https://switch-oasis-backend.onrender.com/api/contact", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name, email, message })
     })
       .then(res => {
-        if (!res.ok) {
-          throw new Error("Network response was not ok");
-        }
+        if (!res.ok) throw new Error("Network response was not ok");
         return res.json();
       })
       .then(data => {
@@ -56,3 +51,59 @@ if (form) {
       });
   });
 }
+
+// Signup form submission
+const signupForm = document.querySelector('#signup-form');
+if (signupForm) {
+  signupForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const username = signupForm.querySelector('input[name="username"]').value;
+    const email = signupForm.querySelector('input[name="email"]').value;
+    const password = signupForm.querySelector('input[name="password"]').value;
+
+    try {
+      const res = await fetch("https://switch-oasis-backend.onrender.com/api/auth/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, email, password })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Signup failed");
+
+      alert("Signup successful!");
+      signupForm.reset();
+    } catch (err) {
+      console.error(err);
+      alert("Signup error: " + err.message);
+    }
+  });
+}
+
+//  Login form submission
+const loginForm = document.querySelector('#login-form');
+if (loginForm) {
+  loginForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = loginForm.querySelector('input[name="email"]').value;
+    const password = loginForm.querySelector('input[name="password"]').value;
+
+    try {
+      const res = await fetch("https://switch-oasis-backend.onrender.com/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Login failed");
+
+      alert("Login successful!");
+      loginForm.reset();
+      // Optional: redirect, e.g. window.location.href = "/dashboard";
+    } catch (err) {
+      console.error(err);
+      alert("Login error: " + err.message);
+    }
+  });
+}
+
+console.log("All frontend scripts loaded successfully.");
