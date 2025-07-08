@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (document.getElementById('signUpForm')) {
     handleAuthForm(
       'signUpForm',
-      `${BASE_URL}/api/auth/register`, 
+      `${BASE_URL}/api/auth/register`,
       'Registered! Please log in.',
       'login.html'
     );
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (document.getElementById('loginForm')) {
     handleAuthForm(
       'loginForm',
-      `${BASE_URL}/api/auth/login`, 
+      `${BASE_URL}/api/auth/login`,
       'Welcome!',
       'dashboard.html'
     );

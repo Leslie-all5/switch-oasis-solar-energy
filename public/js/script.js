@@ -1,6 +1,6 @@
 console.log("script.js is running");
 
-//  Smooth scrolling for navigation links
+// Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
     e.preventDefault();
@@ -11,7 +11,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-// 🌿 Nav toggle for mobile
+// Nav toggle for mobile
 const navToggle = document.getElementById('nav-toggle');
 const nav = document.querySelector('#main-nav ul');
 if (navToggle && nav) {
@@ -49,60 +49,6 @@ if (form) {
         console.error("Error:", err);
         alert("Failed to send message.");
       });
-  });
-}
-
-// Signup form submission
-const signupForm = document.querySelector('#signup-form');
-if (signupForm) {
-  signupForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const username = signupForm.querySelector('input[name="username"]').value;
-    const email = signupForm.querySelector('input[name="email"]').value;
-    const password = signupForm.querySelector('input[name="password"]').value;
-
-    try {
-      const res = await fetch("https://switch-oasis-backend.onrender.com/api/auth/signup", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, email, password })
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Signup failed");
-
-      alert("Signup successful!");
-      signupForm.reset();
-    } catch (err) {
-      console.error(err);
-      alert("Signup error: " + err.message);
-    }
-  });
-}
-
-//  Login form submission
-const loginForm = document.querySelector('#login-form');
-if (loginForm) {
-  loginForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const email = loginForm.querySelector('input[name="email"]').value;
-    const password = loginForm.querySelector('input[name="password"]').value;
-
-    try {
-      const res = await fetch("https://switch-oasis-backend.onrender.com/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password })
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Login failed");
-
-      alert("Login successful!");
-      loginForm.reset();
-      // Optional: redirect, e.g. window.location.href = "/dashboard";
-    } catch (err) {
-      console.error(err);
-      alert("Login error: " + err.message);
-    }
   });
 }
 
