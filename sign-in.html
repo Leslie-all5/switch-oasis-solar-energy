@@ -1,52 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign Up - Switch Oasis</title>
-  <link rel="stylesheet" href="css/sign-in.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up - Switch Oasis</title>
+    <link rel="stylesheet" href="css/sign-in.css" />
     <script defer src="js/auth.js"></script>
-</head>
-<body>
-  <div class="container form-section">
-    <h2>Create an Account</h2>
-    <form id="signUpForm">
-      <label>Name</label>
-      <input type="text" name="name" required>
+  </head>
+  <body>
+    <div class="container form-section">
+      <h2>Create an Account</h2>
+      <form id="signUpForm">
+        <label>Name</label>
+        <input type="text" name="name" required />
 
-      <label>Email</label>
-      <input type="email" name="email" required>
+        <label>Email</label>
+        <input type="email" name="email" required />
 
-      <label>Password</label>
-      <input type="password" name="password" required>
+        <label>Password</label>
+        <input type="password" name="password" required />
 
-      <button type="submit" class="btn-primary">Sign Up</button>
-    </form>
-    <p>Already have an account? <a href="login.html">Login</a></p>
-  </div>
+        <button type="submit" class="btn-primary">Sign Up</button>
+      </form>
+      <p>Already have an account? <a href="login.html">Login</a></p>
+    </div>
 
-  <script>
-    document.getElementById('signUpForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const form = e.target;
-      const res = await fetch('https://your-backend-url.com/api/auth/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: form.name.value,
-          email: form.email.value,
-          password: form.password.value
-        })
-      });
+    <script>
+      document
+        .getElementById("signUpForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const form = e.target;
+          const res = await fetch(
+            "https://switch-oasis-backend.onrender.com/api/auth/register",
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                name: form.name.value,
+                email: form.email.value,
+                password: form.password.value,
+              }),
+            }
+          );
 
-      const data = await res.json();
-      if (res.ok) {
-        alert('Registration successful! You can now login.');
-        window.location.href = 'login.html';
-      } else {
-        alert(data.error || 'Registration failed.');
-      }
-    });
-  </script>
-</body>
+          const data = await res.json();
+          if (res.ok) {
+            alert("Registration successful! You can now login.");
+            window.location.href = "login.html";
+          } else {
+            alert(data.error || "Registration failed.");
+          }
+        });
+    </script>
+  </body>
 </html>
